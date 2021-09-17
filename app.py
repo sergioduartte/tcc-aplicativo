@@ -25,12 +25,12 @@ def sobre():
 def resultado():
     momentosd = float(request.form.get("momento"))
     cortantesd = float(request.form.get("cortante"))
-    axialsd = float(request.form.get("axial"))
-    esbeltezx = esbeltez_em_x(lb, Kx, ix)
-    esbeltezy = esbeltez_em_y(lb, Ky, iy)
-    nex = Ne_x(E, Ix, Kx, lb)
-    ney = Ne_y(E, Iy, Ky, lb)
-    nez = Ne_z(Cw, G, J, E, ix, iy, Kz, lb)
+    normalsd = float(request.form.get("normalsd"))
+    lb = float(request.form.get("lb"))
+    kx = float(request.form.get("kx"))
+    ky = float(request.form.get("ky"))
+    kz = float(request.form.get("kz"))
+    
+    resist = resiste(normalsd, lb, kx, ky, kz)
 
-
-    return render_template('resultado.html', momento=momentosd, cortante=cortantesd, axial=axialsd, esbeltezx=esbeltezx, esbeltezy=esbeltezy, nex=nex, ney=ney, nez=nez)
+    return render_template('resultado.html', normalsd=normalsd, lb=lb, kx=kx, ky=ky, kz=kz, resiste=resist)

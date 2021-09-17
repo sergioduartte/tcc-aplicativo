@@ -1,3 +1,3 @@
 import math
-import variaveis 
+from formulas.variaveis import *
 

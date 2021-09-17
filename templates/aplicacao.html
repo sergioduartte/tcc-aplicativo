@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container">
-        <h1>Serginho</h1>
+        <h1>Dimensionamentos de Perfis I Simétricos</h1>
         <form action="/resultado" method="POST">
             <fieldset>
                 <div class="form-group">
@@ -14,8 +14,23 @@
                 </div>
                 <br/>   
                 <div class="form-group">
-                    <input type="text" class="form-control" name=axial id="axial" placeholder="kN">
+                    <input type="text" class="form-control" name=normalsd id="normalsd" placeholder="kN">
                 </div>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" name=lb id="lb" placeholder="Comprimento(cm)">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" name=kx id="kx" placeholder="Kx">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" name=ky id="ky" placeholder="Ky">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" name=kz id="kz" placeholder="Kz">
                 <br/>   
                 <div class="button">
                     <button type="submit" class="btn btn-primary">Calcular</button>

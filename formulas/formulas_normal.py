@@ -1,5 +1,6 @@
-from variaveis import *
 import math
+from formulas.variaveis import *
+
 
 
 #Validadores dos valores passados serão nas funcoes
@@ -64,6 +65,7 @@ def b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy):
     Q = Qs * Qa
     return Q
 
+
 def Ne_x(E, Ix, Kx, lb):
     pi = math.pi
     ne_x = ((pi**2) * E * Ix) / (Kx * lb)**2
@@ -72,6 +74,7 @@ def Ne_x(E, Ix, Kx, lb):
     print('=============')
     return ne_x
 
+
 def Ne_y(E, Iy, Ky, lb):
     pi = math.pi
     ne_y = ((pi**2) * E * Iy) / (Ky * lb)**2
@@ -79,6 +82,7 @@ def Ne_y(E, Iy, Ky, lb):
     print(f'Ney é: {ne_y}')
     print('=============')
     return ne_y
+
 
 def Ne_z(Cw, G, J, E, ix, iy, Kz, lb):
     pi = math.pi
@@ -92,11 +96,13 @@ def Ne_z(Cw, G, J, E, ix, iy, Kz, lb):
     print('=============')
     return ne_z
 
+
 def Nc(Ne_x, Ne_y, Ne_z):
     print('=============')
     print(f'Nc é: {min(Ne_x, Ne_y, Ne_z)}')
     print('=============')
     return min(Ne_x,Ne_y,Ne_z)
+
 
 def lambda_0(Q, Ag, fy, Nc):
     lambda_0 = math.sqrt((Q * Ag * fy) / Nc)
@@ -104,6 +110,7 @@ def lambda_0(Q, Ag, fy, Nc):
     print(f'Lambda0 é: {lambda_0}')
     print('=============')
     return lambda_0
+
 
 def Chi(lambda_0):
     lambda_0_2 = lambda_0 ** 2
@@ -119,6 +126,7 @@ def Chi(lambda_0):
         print('=============')
     return chi
 
+
 def Nc_Rd(Chi, Q, Ag, fy, Gama_a1):
     Nc_Rd = (Chi * Q * Ag * fy) / Gama_a1
     print('=============')
@@ -126,18 +134,26 @@ def Nc_Rd(Chi, Q, Ag, fy, Gama_a1):
     print('=============')
     return Nc_Rd
 
+
+def resiste(normalsd, lb, Kx, Ky, Kz):
+    Qa = b_tlim_alma(SQRT_E_fy, d_t, Ca, to, Ag, ho)
+    Q = b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy)
+ 
+    Ne_x1 = Ne_x(E, Ix, Kx, lb)
+    Ne_y1 = Ne_y(E, Iy, Ky, lb)
+    Ne_z1 = Ne_z(Cw, G, J, E, ix, iy, Kz, lb)
+ 
+    Nc1 = Nc(Ne_x1, Ne_y1, Ne_z1)
+ 
+    lambda_01 = lambda_0(Q, Ag, fy, Nc1)
+    Chi1 = Chi(lambda_01)
+    Nc_Rd1 = Nc_Rd(Chi1, Q, Ag, fy, Gama_a1)
+ 
+    if normalsd <= Nc_Rd1:
+        return "Resiste"
+    else: 
+        return "Não Resiste"
+
+
 esbeltez_em_x(Kx,lb,ix)
 esbeltez_em_y(Ky,lb,iy)
-
-Qa = b_tlim_alma(SQRT_E_fy, d_t, Ca, to, Ag, ho)
-Q = b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy)
-
-Ne_x = Ne_x(E, Ix, Kx, lb)
-Ne_y = Ne_y(E, Iy, Ky, lb)
-Ne_z = Ne_z(Cw, G, J, E, ix, iy, Kz, lb)
-
-Nc = Nc(Ne_x, Ne_y, Ne_z)
-
-lambda_0 = lambda_0(Q, Ag, fy, Nc)
-Chi = Chi(lambda_0)
-Nc_Rd = Nc_Rd(Chi, Q, Ag, fy, Gama_a1)
