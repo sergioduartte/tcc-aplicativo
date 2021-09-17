@@ -1,40 +1,4 @@
-#Verificação de Esbeltez
-def esbeltezEmX(lb, Kx, ix):
-    esbeltezx = (Kx * lb)/ix    
-    print(f'Esbeltez em x: {esbeltezx}')
-    return esbeltezx
-    
-
-def esbeltezEmY(lb, Ky, iy):
-    esbeltezy = (Ky * lb)/iy
-    print(f'Esbeltez em y: {esbeltezy}')
-    return esbeltezy
-
-#Cálculo da força axial de flambagem elástica
-""" def b_tlimAlma(SQRT_E_fy, d_t, Qa, Ca, to, Aef, Bef, Ag, ho):
-    b_tlim = 1.49 * (SQRT_E_fy)
-    if b_tlim > d_t:
-        Bef = 1
-        Aef = 1
-        Qa = 1
-        print(f'Qa é: {Qa}')
-    else: 
-        Bef = 1.92*to*SQRT_E_fy*(1-(Ca/to)*SQRT_E_fy)
-        Aef = Ag-((to-Bef)*ho)
-        Qa = Aef/Ag
-        print(f'Qa é: {Qa}')
-        print(f'b/t limite da Alma é: {b_tlim}')
-
-
-def b_tlimMesa(SQRT_E_fy, bf_2t, Qs, Ca, to):
-    b_tlim = 0.56 * (SQRT_E_fy)
-    if b_tlim > bf_2t:
-        Qs = 1
-    else: 
-        Qs = 1.92*to*SQRT_E_fy*(1-(Ca/to)*SQRT_E_fy)
-        print(f'Qs é: {Qs} e Q = {Qs}')
-        print(f'b/t limite da Mesa é: {b_tlim}') """
-
+import math
 
 #valores de entrada
 momentord = 100
@@ -46,7 +10,7 @@ Ky = 1
 Kz = 1
 
 
-#sobre o perfil
+#sobre o perfil w310x52
 m = 52
 h = 317
 Ag = 67.0
@@ -67,20 +31,123 @@ bf_2t = 6.33
 d_t = 35.61
 Cw = 236.422
 
-Qs = 1 
-Qa = 1
-Bef = 1
-Aef = 1
 Ca = 0.34
+Gama_a1 = 1.1
 
 
 # Sobre o aço
-fy = 250
+fy = 345
 E = 200000
 G = 77000
-SQRT_E_fy = 24.07717062
+SQRT_E_fy = math.sqrt(E/fy)
 
-esbeltezEmX(Kx,lb,ix)
-esbeltezEmY(Ky,lb,iy)
-""" b_tlimAlma(SQRT_E_fy, d_t, Qa, Ca, to)
-b_tlimMesa(SQRT_E_fy, d_t, Qa, Ca, to, Ag, Bef, Aef, ho) """
+#Validadores dos valores passados serão nas funcoes
+
+#Verificação de Esbeltez
+def esbeltez_em_x(lb, Kx, ix):
+    esbeltez_x = (Kx * lb) / ix
+    return esbeltez_x
+    
+
+def esbeltez_em_y(lb, Ky, iy):
+    esbeltez_y = (Ky * lb) / iy
+    return esbeltez_y
+
+#TODO
+def esbeltez_em_z(jooj):
+    # TODO
+    return -1
+
+#Cálculo da força axial de flambagem elástica
+def b_tlim_alma(SQRT_E_fy, d_t, Ca, to, Ag, ho):
+    b_tlim = 1.49 * (SQRT_E_fy)
+    if d_t <= b_tlim:
+        Qa = 1
+        print('=============')
+        print(f'Qa é: {Qa}')
+        print('=============')
+        return Qa
+    else: 
+        Bef = 1.92 * to * SQRT_E_fy * (1-(Ca/to) * SQRT_E_fy)
+        Aef = Ag-((to-Bef)*ho) # TODO PERGUNTAR AO ORIENTADOR
+        Qa = Aef/Ag
+        print('=============')
+        print(f'Qa é: {Qa}')
+        print(f'b/t limite da Alma é: {b_tlim}')
+        print('=============')
+        return Qa
+
+
+def b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy):
+    b_tlim = 0.56 * (SQRT_E_fy)
+    if bf_2t <= b_tlim:
+        Qs = 1
+        print('=============')
+        print(f'Qs é: {Qs}')
+        print('=============')
+    else: 
+        if bf_2t <= 1.03 * SQRT_E_fy:
+            Qs = 1.415 - (0.74 * bf_2t * SQRT_E_fy) #TODO PERGUNTAR AO ORIENTADOR O VALOR CORRETO
+            print('=============')
+            print(f'Qs é: {Qs} e Q = {Qs}')
+            print('=============')
+        else:
+            Qs = (0.69 * E) / (fy * (bf_2t ** 2))
+            print('=============')
+            print(f'Qs é: {Qs} e Q = {Qs}')
+            print('=============')
+    Q = Qs * Qa
+    return Q
+
+def Ne_x(E, Ix, Kx, lb):
+    pi = math.pi
+    ne_x = ((pi**2) * E * Ix) / (Kx * lb)**2
+    return ne_x
+
+def Ne_y(E, Iy, Ky, lb):
+    pi = math.pi
+    ne_y = ((pi**2) * E * Iy) / (Ky * lb)**2
+    return ne_y
+
+def Ne_z(Cw, G, J, E, ix, iy, Kz, lb):
+    pi = math.pi
+    ro_2 = (ix * iy) ** 2
+    ne_z = (1 / ro_2) * (((pi **2) * E * Cw) / ((Kz * lb) **2)) + G * J
+    return ne_z
+
+def Nc(Ne_x, Ne_y, Ne_z):
+    return min(Ne_x,Ne_y,Ne_z)
+
+def lambda_0(Q, Ag, fy, Nc):
+    lambda_0 = math.sqrt((Q * Ag * fy) / Nc)
+    return lambda_0
+
+def Chi(lambda_0):
+    lambda_0_2 = lambda_0 ** 2
+    if lambda_0 <= 1.5:
+        chi = 0.658 ** lambda_0_2
+    else:
+        chi = 0.877 / lambda_0_2
+    return chi
+
+def Nc_Rd(Chi, Q, Ag, fy, Gama_a1):
+    Nc_Rd = (Chi * Q * Ag * fy) / Gama_a1
+    return Nc_Rd
+
+esbeltez_em_x(Kx,lb,ix)
+esbeltez_em_y(Ky,lb,iy)
+
+Qa = b_tlim_alma(SQRT_E_fy, d_t, Ca, to, Ag, ho)
+Q = b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy)
+
+Ne_x = Ne_x(E, Ix, Kx, lb)
+Ne_y = Ne_y(E, Iy, Ky, lb)
+Ne_z = Ne_z(Cw, G, J, E, ix, iy, Kz, lb)
+
+Nc = Nc(Ne_x, Ne_y, Ne_z)
+
+lambda_0 = lambda_0(Q, Ag, fy, Nc)
+Chi = Chi(lambda_0)
+Nc_Rd = Nc_Rd(Chi, Q, Ag, fy, Gama_a1)
+
+print(Nc_Rd)
