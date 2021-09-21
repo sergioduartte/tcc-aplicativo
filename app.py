@@ -3,7 +3,9 @@ from formulas.formulas_normal import *
 
 app = Flask(__name__)
 
-__name__ = '__main__'
+if (__name__ == '__main__'):
+    app.run(debug=True)
+
 
 @app.route('/')
 def index():
@@ -14,11 +16,6 @@ def index():
 @app.route('/aplicacao')
 def aplicacao():
     return render_template('aplicacao.html')
-
-
-@app.route('/sobre')
-def sobre():
-    return render_template('sobre.html')
 
 
 @app.route('/resultado', methods=["POST"])
@@ -34,3 +31,15 @@ def resultado():
     resist = resiste(normalsd, lb, kx, ky, kz)
 
     return render_template('resultado.html', normalsd=normalsd, lb=lb, kx=kx, ky=ky, kz=kz, resiste=resist)
+
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
+
+@app.route('/im_futura')
+def imp_futura():
+    return render_template('imp_futura.html')
+
+

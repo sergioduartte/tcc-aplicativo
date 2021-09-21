@@ -38,3 +38,6 @@ fy = 34.5 #kN/cm²
 E = 20000 #kN/cm²
 G = 7700 #kN/cm²
 SQRT_E_fy = math.sqrt(E/fy)
+
+#variáveis do cortante
+Kv = 5

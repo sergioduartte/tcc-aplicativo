@@ -1,0 +1,31 @@
+
+ /* ======= RAIZES ======= */
+
+ 
+ :root{
+
+    --header_height: 3rem;
+
+
+ /* ======= ESQUEMA DE CORES ======= */
+
+    --cor_base: 90;
+
+    --cor_primaria: hsl(var(--cor_base), 65%, 61%);
+    --cor_segundaria:hsl(var(--cor_base), 69%, 61%);
+    --cor_clara: hsl(var(--cor_base), 92%, 85%);
+    --cor_escura:hsl(var(--cor_base), 57%, 53%);
+    --cor_titulo:hsl(var(--cor_base), 8%, 15%);
+    --cor_texto:hsl(var(--cor_base), 8%, 45%);
+    --cor_texto_claro:hsl(var(--cor_base), 8%, 65%);
+    --cor_body:hsl(var(--cor_base), 60%, 99%);
+    --cor_input:hsl(var(--cor_base), 70%, 96%);
+    --cor_container:#fff;
+    
+
+/* ======= ESQUEMA DE FONTES ======= */
+
+    --font_primaria: 'Roboto', sans-serif;
+    --font_secundaria: 'Lato', sans-serif;
+    --font_auxiliar: 'Open Sans', sans-serif;
+}

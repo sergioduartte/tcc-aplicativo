@@ -65,7 +65,6 @@ def b_tlim_mesa(Qa, SQRT_E_fy, bf_2t, E, fy):
     Q = Qs * Qa
     return Q
 
-
 def Ne_x(E, Ix, Kx, lb):
     pi = math.pi
     ne_x = ((pi**2) * E * Ix) / (Kx * lb)**2
@@ -73,7 +72,6 @@ def Ne_x(E, Ix, Kx, lb):
     print(f'Nex é: {ne_x}')
     print('=============')
     return ne_x
-
 
 def Ne_y(E, Iy, Ky, lb):
     pi = math.pi
@@ -150,10 +148,9 @@ def resiste(normalsd, lb, Kx, Ky, Kz):
     Nc_Rd1 = Nc_Rd(Chi1, Q, Ag, fy, Gama_a1)
  
     if normalsd <= Nc_Rd1:
-        return "Resiste"
+        return "resiste"
     else: 
-        return "Não Resiste"
-
+        return "não resiste"
 
 esbeltez_em_x(Kx,lb,ix)
 esbeltez_em_y(Ky,lb,iy)

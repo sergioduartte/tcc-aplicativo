@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <div class="container">
         <h1>Resultado</h1>
-
-        Para a normalsd{{ normalsd }}, lb{{ lb }}, kx {{ kx }}, ky {{ ky }}, kz {{ kz }} temos que: <br/>
-        A viga {{ resiste }}
+        <br/>
+        Para a Normal Solicitante de {{ normalsd }}kN, Comprimento lb de: {{ lb }}cm, kx {{ kx }}, ky {{ ky }}, kz {{ kz }} temos que: <br/>
+        A viga {{ resiste }} ao esforço.
     </div>    
 {% endblock %} 
