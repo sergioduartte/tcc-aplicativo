@@ -1,7 +1,152 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <!--==================== HOME ====================-->
     <div class="container">
-        <h1>Olá, essa é uma página teste.</h1>
+
+        <!--=============== SOBRE ===============-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+               <div class="home__data">
+                    <h1 class="home__title">Order Products <br> Faster Easier</h1>
+                    <p class="home__description">Order your favorite foods at any time and we will deliver them right to where you are.</p>
+                    <a href="#" class="button">Get Started</a>
+                </div>   
+            </div>
+        </section>
+
+        <!--=============== APLICAÇÃO ===============-->
+        <section>
+            <div class="container col-md-4 col-md-offset-4">
+                <h3>Dimensionamentos de Perfis I Simétricos</h3>
+                <br/>
+                <form action="/resultado" method="POST">
+                    <fieldset>
+                        <h4>Momento Fletor:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=momento id="momento" placeholder="kN/m³">
+                        </div>
+                        <br/>
+                        <h4>Força Cortante:</h4>   
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=cortante id="cortante" placeholder="kN">
+                        </div>
+                        <br/>
+                        <h4>Força Normal:</h4>   
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=normalsd id="normalsd" placeholder="kN">
+                        </div>
+                        <br/>
+                        <h4>Comprimento Lb em centímetros:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=lb id="lb" placeholder="Comprimento(cm)">
+                        </div>
+                        <br/>
+                        <h4>Comprimento Ly em centímetros:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=lb id="lb" placeholder="Comprimento(cm)">
+                        </div>
+                        <br/>
+                        <h4>Comprimento Lx em centímetros:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=lb id="lb" placeholder="Comprimento(cm)">
+                        </div>
+                        <br/>
+                        <h4>Coeficiente de Flambagem em x:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=kx id="kx" placeholder="Kx">
+                        </div>
+                        <br/>
+                        <h4>Coeficiente de Flambagem em y:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=ky id="ky" placeholder="Ky">
+                        </div>
+                        <br/>
+                        <h4>Coeficiente de Flambagem em z:</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name=kz id="kz" placeholder="Kz">
+                        <br/>   
+                        <div class="button">
+                            <button type="submit" class="button">Calcular</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+        <!--=============== IMPLEMENTAÇÕES FUTURAS ===============-->
+        <section class="services section container" id="services">
+            <h4 class="section__title">Implementações Futuras <br> Offer</h4>
+            <div class="services__container grid">
+                <div class="services__data">
+                    <h3 class="services__subtitle">Payment Done</h3>
+                    <p class="services__description">Pay with a Visa or PayPal card and without much ado.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="services__data">
+                    <h3 class="services__subtitle">Find Your Product</h3>
+                    <p class="services__description">We offer sale of products through the Internet.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="services__data">
+                    <h3 class="services__subtitle">Product Received</h3>
+                    <p class="services__description">In our app you can see the delay time of your order.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="services__data">
+                    <h3 class="services__subtitle">Payment Done</h3>
+                    <p class="services__description">Pay with a Visa or PayPal card and without much ado.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="services__data">
+                    <h3 class="services__subtitle">Find Your Product</h3>
+                    <p class="services__description">We offer sale of products through the Internet.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="services__data">
+                    <h3 class="services__subtitle">Product Received</h3>
+                    <p class="services__description">In our app you can see the delay time of your order.</p>
+                    <div>
+                        <a href="#" class="button button-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--=============== CONTATO ===============-->
+        <section class="contact section container" id="contact">
+            <div class="contact__container grid">
+                <div class="contact__content">
+                    <h2 class="section__title-center">Contact Us From <br> Here</h2>
+                    <p class="contact__description">You can contact us from here, you can write to us, 
+                        call us or visit our service center, we will gladly assist you.</p>
+                </div>
+
+                <ul class="contact__content grid">
+                    <li class="contact__address">Telephone: <span class="contact__information">999 - 888 - 777</span></li>
+                    <li class="contact__address">Email:  <span class="contact__information">delivery@email.com</span></li>
+                    <li class="contact__address">Location: <span class="contact__information">Lima - Peru</span></li>
+                </ul>
+
+                <div class="contact__content">
+                    <a href="#" class="button">Contact Us</a>
+                </div>
+            </div>
+        </section>
     </div>    
 {% endblock %}

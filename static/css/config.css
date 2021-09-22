@@ -1,31 +1,78 @@
-
  /* ======= RAIZES ======= */
 
- 
- :root{
+ @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-    --header_height: 3rem;
+:root {
 
 
- /* ======= ESQUEMA DE CORES ======= */
+  --header-height: 3rem;
+  /*========== COR BASE ==========*/
+  /*Green dark 190 - Green 171 - Grren Blue 200*/
+  --hue: 242;
+  --sat: 98%;
+  --first-color: hsl(var(--hue), var(--sat), 60%);
+  --first-color-light: hsl(var(--hue), var(--sat), 85%);
+  --first-color-lighten: hsl(var(--hue), var(--sat), 80%);
+  --first-color-alt: hsl(var(--hue), var(--sat), 53%);
+  --first-color-header: hsl(var(--hue), var(--sat),41%);
+  --title-color: hsl(var(--hue), 4%, 15%);
+  --text-color: hsl(var(--hue), 4%, 35%);
+  --text-color-light: hsl(var(--hue), 4%, 65%);
+  --body-color: hsl(var(--hue), 0%, 100%);
+  --container-color: #FFF;
+  --scroll-bar-color: hsl(var(--hue), 4%, 85%);
+  --scroll-thumb-color: hsl(var(--hue), 4%, 75%);
 
-    --cor_base: 90;
+  /* ======= ESQUEMA DE FONTES ======= */
+  --body-font: 'Roboto', sans-serif;
+  --font-secundary: 'Lato', sans-serif;
+  --font-aux: 'Open Sans', sans-serif;
+  
+  --biggest-font-size: 2rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1.125rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
 
-    --cor_primaria: hsl(var(--cor_base), 65%, 61%);
-    --cor_segundaria:hsl(var(--cor_base), 69%, 61%);
-    --cor_clara: hsl(var(--cor_base), 92%, 85%);
-    --cor_escura:hsl(var(--cor_base), 57%, 53%);
-    --cor_titulo:hsl(var(--cor_base), 8%, 15%);
-    --cor_texto:hsl(var(--cor_base), 8%, 45%);
-    --cor_texto_claro:hsl(var(--cor_base), 8%, 65%);
-    --cor_body:hsl(var(--cor_base), 60%, 99%);
-    --cor_input:hsl(var(--cor_base), 70%, 96%);
-    --cor_container:#fff;
-    
+  /*========== PESO DAS FONTES ==========*/
+  --font-semi-bold: 600;
+  --font-bold: 700;
+  /*========== Margenes Bottom ==========*/
+  --mb-0-25: .25rem;
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-25: 1.25rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
 
-/* ======= ESQUEMA DE FONTES ======= */
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100
 
-    --font_primaria: 'Roboto', sans-serif;
-    --font_secundaria: 'Lato', sans-serif;
-    --font_auxiliar: 'Open Sans', sans-serif;
+
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 3rem;
+    --h2-font-size: 1.75rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*========== Variables Dark theme ==========*/
+body.dark-theme {
+  --first-color-light: hsl(var(--hue), var(--sat), 75%);
+  --title-color: hsl(var(--hue), 4%, 95%);
+  --text-color: hsl(var(--hue), 4%, 80%);
+  --body-color: hsl(var(--hue), 8%, 13%);
+  --container-color: hsl(var(--hue), 8%, 16%);
+  --scroll-bar-color: hsl(var(--hue), 4%, 32%);
+  --scroll-thumb-color: hsl(var(--hue), 4%, 24%);
 }

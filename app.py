@@ -13,11 +13,6 @@ def index():
     return render_template('index.html', title=title)
 
 
-@app.route('/aplicacao')
-def aplicacao():
-    return render_template('aplicacao.html')
-
-
 @app.route('/resultado', methods=["POST"])
 def resultado():
     momentosd = float(request.form.get("momento"))
@@ -33,13 +28,7 @@ def resultado():
     return render_template('resultado.html', normalsd=normalsd, lb=lb, kx=kx, ky=ky, kz=kz, resiste=resist)
 
 
-@app.route('/sobre')
-def sobre():
-    return render_template('sobre.html')
 
 
-@app.route('/im_futura')
-def imp_futura():
-    return render_template('imp_futura.html')
 
 
